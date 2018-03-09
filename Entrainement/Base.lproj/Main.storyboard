@@ -14,13 +14,15 @@
             <objects>
                 <tableViewController title="Table View" id="TU7-tE-tnL" customClass="TableViewController" customModule="Entrainement" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="K0h-fY-vd8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.23071503639221191" green="0.26066648960113525" blue="0.32174128293991089" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="UFo-7d-LzP">
-                            <rect key="frame" x="0.0" y="64" width="375" height="88"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <color key="backgroundColor" red="0.1764705882352941" green="0.20000000000000001" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             <scopeButtonTitles>
                                 <string>Titre</string>
                                 <string>Episode</string>
@@ -39,18 +41,19 @@
                                             <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lDW-8o-RCr">
                                             <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1764705882352941" green="0.20000000000000001" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -71,9 +74,12 @@
         <scene sceneID="iPf-XL-ycb">
             <objects>
                 <navigationController id="aS3-j4-9YW" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l8C-vH-dvB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="blackTranslucent" translucent="NO" id="l8C-vH-dvB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.1764705882352941" green="0.20000000000000001" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.1764705882" green="0.20000000000000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1764705882" green="0.20000000000000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="TU7-tE-tnL" kind="relationship" relationship="rootViewController" id="Qfv-1H-4qH"/>
