@@ -63,17 +63,32 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         let sound = self.filteredData[indexPath.row] as! [String:String]
 
         let file = sound["file"]!
-        let service = "http://ctexdev.net/arthur/Kaamelott/sound/\(file)"
         
-        print(service)
+        let store = UserDefaults.standard
+        store.synchronize()
         
-        let url = URL(string: service)
-        let request = URLRequest(url: url!)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, resp, err) in
-            Player.shared.playSound(data!)
+        if let storedDict = store.value(forKey: "fr.lemesle.Eval") as! [String: Data]? {
+            for (id, value) in storedDict {
+                if(id == sound["title"]){
+                    print("Dispo en local, je lance l'écoute offline")
+                    Player.shared.playSound(value)
+                }
+            }
+        }else{
+            let service = "http://ctexdev.net/arthur/Kaamelott/sound/\(file)"
+            
+            print(service)
+            
+            let url = URL(string: service)
+            let request = URLRequest(url: url!)
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { (data, resp, err) in
+                self.download(data: data as Any, id: sound["title"]!)
+                print("Fichier pas en local, je lance l'écoute online")
+                Player.shared.playSound(data!)
+            }
+            task.resume()
         }
-        task.resume()
     }
     
     // This method updates filteredData based on the text in the Search Box
@@ -135,27 +150,23 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         }
         task.resume()
         //self.tableView.reloadData()
-
-        
-        /*do {
-            
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
-            // Ici on parse le fichier JSON
-            
-            for index in 0...(jsonResult).count-1 {
-                
-                let jsonObjects = (jsonResult[index]) as AnyObject
-                
-                self.data.append(jsonObjects["name"] as! String,jsonObjects["country"] as! String)
-                //self.age.append(jsonObjects["supinfo_student_age"] as! String)
-            }
-        } catch { // On catch les erreurs potentielles
-            print(error)
-        }
-        
-        dump(data)*/
-        
     }
     
+    func download(data : Any, id : String) {
+            var dictionnary = [String: Data]()
+            let store = UserDefaults.standard
+            store.synchronize()
+            
+            if let storedDict = store.value(forKey: "fr.lemesle.Eval") as! [String: Data]? {
+                dictionnary = storedDict
+            }
+            
+            dictionnary["\(id)"] = data as? Data
+            
+            store.set(dictionnary, forKey: "fr.lemesle.Eval")
+            store.synchronize()
+        
+    }
+
 
 }
