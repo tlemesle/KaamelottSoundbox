@@ -67,14 +67,18 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         let store = UserDefaults.standard
         store.synchronize()
         
+        var dispo : Bool = false
+        
         if let storedDict = store.value(forKey: "fr.lemesle.Eval") as! [String: Data]? {
             for (id, value) in storedDict {
                 if(id == sound["title"]){
                     print("Dispo en local, je lance l'écoute offline")
+                    dispo = true
                     Player.shared.playSound(value)
                 }
             }
-        }else{
+        }
+        if(dispo == false){
             let service = "http://ctexdev.net/arthur/Kaamelott/sound/\(file)"
             
             print(service)
@@ -88,6 +92,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 Player.shared.playSound(data!)
             }
             task.resume()
+
         }
     }
     
